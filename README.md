@@ -1,5 +1,7 @@
 # Flutter eCommerce App
 
+App to learn how to use Riverpod in Flutter
+
 This is the official Flutter Project for this course:
 
 - [Complete Flutter Course Bundle](https://codewithandrea.com/courses/complete-flutter-bundle/)
