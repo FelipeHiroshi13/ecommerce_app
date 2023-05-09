@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../features/account/account_screen.dart';
+import '../features/not_found/not_found_screen.dart';
 import '../features/orders_list/orders_list_screen.dart';
 import '../features/product_page/product_screen.dart';
 import '../features/products_list/products_list_screen.dart';
@@ -19,61 +20,61 @@ enum AppRoute {
 }
 
 final goRouter = GoRouter(
-  initialLocation: '/',
-  debugLogDiagnostics: true,
-  routes: [
-    GoRoute(
-      path: '/',
-      name: AppRoute.home.name,
-      builder: (context, state) => const ProductsListScreen(),
-      routes: [
-        GoRoute(
-          path: 'product/:id',
-          name: AppRoute.product.name,
-          builder: (context, state) {
-            final productId = state.params['id']!;
-            return ProductScreen(productId: productId);
-          },
-        ),
-        GoRoute(
-          path: 'cart',
-          name: AppRoute.cart.name,
-          pageBuilder: (context, state) => MaterialPage(
-            key: state.pageKey,
-            fullscreenDialog: true,
-            child: const ShoppingCartScreen(),
+    initialLocation: '/',
+    debugLogDiagnostics: true,
+    routes: [
+      GoRoute(
+        path: '/',
+        name: AppRoute.home.name,
+        builder: (context, state) => const ProductsListScreen(),
+        routes: [
+          GoRoute(
+            path: 'product/:id',
+            name: AppRoute.product.name,
+            builder: (context, state) {
+              final productId = state.params['id']!;
+              return ProductScreen(productId: productId);
+            },
           ),
-        ),
-        GoRoute(
-          path: 'orders',
-          name: AppRoute.orders.name,
-          pageBuilder: (context, state) => MaterialPage(
-            key: state.pageKey,
-            fullscreenDialog: true,
-            child: const OrdersListScreen(),
-          ),
-        ),
-        GoRoute(
-          path: 'account',
-          name: AppRoute.account.name,
-          pageBuilder: (context, state) => MaterialPage(
-            key: state.pageKey,
-            fullscreenDialog: true,
-            child: const AccountScreen(),
-          ),
-        ),
-        GoRoute(
-          path: 'signIn',
-          name: AppRoute.signIn.name,
-          pageBuilder: (context, state) => MaterialPage(
-            key: state.pageKey,
-            fullscreenDialog: true,
-            child: const EmailPasswordSignInScreen(
-              formType: EmailPasswordSignInFormType.signIn,
+          GoRoute(
+            path: 'cart',
+            name: AppRoute.cart.name,
+            pageBuilder: (context, state) => MaterialPage(
+              key: state.pageKey,
+              fullscreenDialog: true,
+              child: const ShoppingCartScreen(),
             ),
           ),
-        ),
-      ],
-    ),
-  ],
-);
+          GoRoute(
+            path: 'orders',
+            name: AppRoute.orders.name,
+            pageBuilder: (context, state) => MaterialPage(
+              key: state.pageKey,
+              fullscreenDialog: true,
+              child: const OrdersListScreen(),
+            ),
+          ),
+          GoRoute(
+            path: 'account',
+            name: AppRoute.account.name,
+            pageBuilder: (context, state) => MaterialPage(
+              key: state.pageKey,
+              fullscreenDialog: true,
+              child: const AccountScreen(),
+            ),
+          ),
+          GoRoute(
+            path: 'signIn',
+            name: AppRoute.signIn.name,
+            pageBuilder: (context, state) => MaterialPage(
+              key: state.pageKey,
+              fullscreenDialog: true,
+              child: const EmailPasswordSignInScreen(
+                formType: EmailPasswordSignInFormType.signIn,
+              ),
+            ),
+          ),
+        ],
+      ),
+    ],
+    errorBuilder: (context, state) => const NotFoundScreen());
