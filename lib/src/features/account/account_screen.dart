@@ -19,17 +19,16 @@ class AccountScreen extends StatelessWidget {
           ActionTextButton(
             text: 'Logout'.hardcoded,
             onPressed: () async {
-              showNotImplementedAlertDialog(context: context);
-              // final logout = await showAlertDialog(
-              //   context: context,
-              //   title: 'Are you sure?'.hardcoded,
-              //   cancelActionText: 'Cancel'.hardcoded,
-              //   defaultActionText: 'Logout'.hardcoded,
-              // );
-              // if (logout == true) {
-              //   // TODO: Sign out the user.
-              //   Navigator.of(context).pop();
-              // }
+              final logout = await showAlertDialog(
+                context: context,
+                title: 'Are you sure?'.hardcoded,
+                cancelActionText: 'Cancel'.hardcoded,
+                defaultActionText: 'Logout'.hardcoded,
+              );
+              if (logout == true && context.mounted) {
+                // TODO: Sign out the user.
+                Navigator.of(context).pop();
+              }
             },
           ),
         ],
@@ -48,7 +47,7 @@ class UserDataTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final style = Theme.of(context).textTheme.subtitle2!;
+    final style = Theme.of(context).textTheme.titleSmall!;
     // TODO: get user from auth repository
     const user = AppUser(uid: '123', email: 'test@test.com');
     return DataTable(
