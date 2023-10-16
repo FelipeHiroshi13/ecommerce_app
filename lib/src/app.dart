@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
       restorationScopeId: 'app',
       onGenerateTitle: (BuildContext context) => 'My Shop'.hardcoded,
       theme: ThemeData(
+        useMaterial3: false,
         primarySwatch: Colors.grey,
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.black87,
